@@ -1,0 +1,70 @@
+<!-- Category -->
+<div class="orders mt-5 p-5">
+    <div class="row">
+        <div class="col-xl-11 mx-auto category-top">
+            <div class="card">
+                <div class="card-body mb-2">
+
+                    <div class="input-group mb-3">
+                        <h4 class="box-title">Orders</h4>
+                    </div>
+                </div>
+                <div class="card-body--">
+                    <div class="table-stats order-table ov-h">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>index</th>
+                                    <th>Customer</th>
+                                    <th>Seller</th>
+                                    <th>Products</th>
+                                    <th>Qty</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>payment Method</th>
+                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each allOrder}}
+                                <tr>
+                                    <td class="create_index">{{ inc @index}} </td>
+                                    <td> <span class="products">{{this.users.full_name}}</span> </td>
+                                    <td> <span class="products">{{this.seller.full_name}}</span> </td>
+                                    <td> <span class="products">{{this.product.product_name}}</span> </td>
+                                    <td> <span class="products">{{this.products.quantity}}</span> </td>
+                                    <td> <span class="products">{{this.products.price}}</span> </td>
+                                    {{#if products.ship}}
+                                    <td> <span class="text-primary">{{this.products.productStatus}}</span> </td>
+                                    {{else if products.cancel}}
+                                    <td> <span class="text-danger">{{this.products.productStatus}}</span> </td>
+                                    {{else if products.completed}}
+                                    <td> <span class="text-success">{{this.products.productStatus}}</span> </td>
+                                    {{else}}
+                                    <td> <span class="text-success">{{this.status}}</span> </td>
+                                    {{/if}}
+                                    <td> <span class="text-success">{{this.paymentMethod}}</span> </td>
+
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div> <!-- /.card -->
+        </div> <!-- /.col-lg-8 -->
+    </div>
+</div>
+<!-- /.Category -->
+</a>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#bootstrap-data-table-export').DataTable();
+    });
+</script>
+{{!--
+<script>
+    $(".create_index").text(parseInt($(".create_index").text()) + 1)
+</script> --}}

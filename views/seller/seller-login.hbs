@@ -1,0 +1,50 @@
+<section>
+
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="/seller">
+                        <h1>eStore Seller</h1>
+                    </a>
+                </div>
+                <div class="login-form">
+                    <form id="signupForm" action="/seller/seller-login" method="post" > 
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="number" class="form-control" placeholder="Phone Number" name="phone_number" required minlength="10" maxlength="10">
+                        </div>
+                        {{#if sellerErr}}
+                        <p class="text-danger text-center">Phone number is invalid Please Check</p>
+                        {{/if}}
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="Password" name="password" required minlength="8">
+                        </div>
+                        {{#if passErr}}
+                        <p class="text-danger text-center">Password is invalid Please Check</p>
+                        {{/if}}
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember Me
+                            </label>
+                            <label class="pull-right">
+                                <a href="/seller/forgot">Forgotten Password?</a>
+                            </label>
+
+                        </div>
+                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                        
+                        <div class="register-link m-t-15 text-center">
+                            <p>Don't have account ? <a href="/seller/seller-signup"> Sign Up Here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script>
+    $("#signupForm").validate()
+</script>
