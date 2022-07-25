@@ -1,0 +1,128 @@
+<!-- Category -->
+<style>
+.img-prw .delete-icon {
+    background: black;
+    border-radius: 13px;
+    color: #fff;
+    font-weight: bold;
+    padding: 4px 8px;
+    position: absolute;
+    top: -12px;
+    right: -10px;
+}
+
+.img-prw .hero{
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  margin: 30px auto;
+  padding: 150px;
+  position: relative;
+  width: 70%;
+}
+
+.img-prw .hero h5 {
+    color: #E9AD28;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 22px;
+   text-align: center;
+}
+
+.img-prw .hero h2 {
+  font-size: 72px;
+    color: #ffffff;
+    line-height: 82px;
+    text-align: center;
+}
+</style>
+<div class="orders mt-5 p-5">
+    <div class="row">
+        <div class="col-xl-11 mx-auto category-top">
+            <div class="card">
+                <div class="full_container">
+                    <div class="inner_container">
+                        <!-- dashboard inner -->
+                        <h2 class="text-center mt-5 pt-5">Add Featured Category</h2>
+                        <div class="w-75 mx-auto mt-5">
+                            <form class="p-5 border mb-5" enctype="multipart/form-data" method="post"
+                                action="/admin/featuredCategory" id="cateForm">
+                                <div class="form-row form_img">
+                                    <div class="grid">
+                                        <div class="form-element ml-auto" style="width: auto; height:auto;">
+                                            <input type="file" id="file-1" accept="image/*" name="featuredCategory">
+                                            <label for="file-1" id="file-1-preview">
+                                                <img src="https://bit.ly/3ubuq5o" alt="">
+                                                <div>
+                                                    <span>+</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputProduct4">Quality</label>
+                                    <input type="text" class="form-control inpfield" placeholder="Quality"
+                                        name="quality" id="product_name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputProduct4">Heading</label>
+                                    <textarea id="description" type="text" id="defaultRegisterFormEmail"
+                                        class="form-control" placeholder="Heading" name="heading"
+                                        required></textarea>
+                                </div>
+
+                                <input class="btn btn-primary" type="submit">
+                                {{!-- <div class="text-center mt-5">
+                                    <button type="button" class="btn btn-primary">Add Product</button>
+
+                                </div> --}}
+
+                            </form>
+
+                        </div>
+                        <!-- end dashboard inner -->
+                        <section class="img-prw">
+                            <div class="row">
+                                {{#each data}}
+                                <section class="hero spad set-bg"
+                                    style="background:url('/Images/featuredCategory/{{this.featured.image}}')">
+                                    <a class="delete-icon" href=" /admin/delete-feature/{{this.featured._id}}">x</a>
+                                    <div class="hero__text">
+                                        <h5>{{this.featured.title}}</h5>
+                                        <h2>{{this.featured.descriptions}}</h2>
+                                    </div>
+
+
+                                </section>
+                                {{/each}}
+                            </div>
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /.card -->
+    </div> <!-- /.col-lg-8 -->
+</div>
+</div>
+<!-- /.Category -->
+<script>
+    function previewBeforeUpload(id) {
+        document.querySelector("#" + id).addEventListener("change", function (e) {
+            if (e.target.files.length == 0) {
+                return;
+            }
+            let file = e.target.files[0];
+            let url = URL.createObjectURL(file);
+            document.querySelector("#" + id + "-preview div").innerText = file.name;
+            document.querySelector("#" + id + "-preview img").src = url;
+        });
+    }
+
+    previewBeforeUpload("file-1");
+</script>
+<script>
+    $("#cateForm").validate({})
+</script>

@@ -1,0 +1,283 @@
+<!--================Home Banner Area =================-->
+{{#if datas}}
+<!-- breadcrumb start-->
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                        <h2>Cart Products</h2>
+                        <p>Home <span>-</span>Cart Products</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb start-->
+
+<!--================Cart Area =================-->
+<section class="cart_area padding_top">
+    <div class="container cart-width">
+        <div class="row gap">
+            <div class="cart_inner col-md-8">
+                <div class="table-responsive kali">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+
+                                <th scope="col">Price</th>
+
+                                <th scope="col">Quantity</th>
+                                <th scope="col">TotalAmount</th>
+                                <th scope="col">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each datas}}
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img style="width: auto; height:95px;"
+                                                src="/Images/productImages/{{this.product.Images.[0].productImg.[0]}}" alt="" />
+                                                <div id="productError" class="alert text-danger" role="alert" style="display: none;margin-left: -112px;bottom: -62px;"></div>
+                                        </div>
+                                        
+                                        <div class="media-body">
+                                            <p>{{this.product.product_name}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>${{this.product.price}}</h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <span class="input-number-dec"> <i class="ti-angle-down"
+                                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-'{{this.product.price}}','{{this.product.product_name}}','{{this.product.price}}','{{this.product.stock}}',-1)"></i></span>
+                                        <p id="{{this.product._id}}">{{this.quantity}}</p>
+                                        <span class="input-number-inc"> <i class="ti-angle-up"
+                                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{this.product.price}}','{{this.product.product_name}}','{{this.product.price}}','{{this.product.stock}}',1)"></i></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>$<span id="{{this.product.product_name}}">{{this.price}}</span></h5>
+                                </td>
+                                <td>
+                                    <i style="cursor: pointer;" class="ti-close"
+                                        onclick="deleteCartItem('{{this._id}}','{{this.product._id}}')"></i>
+                                </td>
+
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="cart_inner col-md-4 grid-for-cart">
+                <div class="table-responsive ">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">AMOUNTS DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each products}}
+                            <tr>
+                                <td>
+                                    <div class="price">
+                                        <h5>Price</h5>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <h5>${{this.price}}</h5>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="stock">
+                                        <h5>Stock</h5>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <h5>{{this.qty}}</h5>
+                                </td>
+
+                            </tr>
+                            {{/each}}
+                            <tr>
+                                <td>
+                                    <div class="price">
+                                        <h5>Total Amounts</h5>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <h5>Rs <span id="total">{{ amount.[0].total }}</span></h5>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="checkout_btn_inner float-right">
+                        <a class="btn_1" href="/">Continue Shopping</a>
+                        <a class="btn_1 checkout_btn_1" href="/checkout">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{else}}
+<div class="empty-cart">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-body cart">
+                <div class="col-sm-12 empty-cart-cls text-center">
+                    <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                    <h3><strong>Your Cart is Empty</strong></h3>
+                    <h4>Add something to make me happy :)</h4>
+                    <a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{{/if}}
+
+<!--================End Cart Area =================-->
+
+<!--::footer_part start::-->
+<footer class="footer_part">
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-sm-6 col-lg-2">
+                <div class="single_footer_part">
+                    <h4>Top Products</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Managed Website</a></li>
+                        <li><a href="">Manage Reputation</a></li>
+                        <li><a href="">Power Tools</a></li>
+                        <li><a href="">Marketing Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+                <div class="single_footer_part">
+                    <h4>Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Jobs</a></li>
+                        <li><a href="">Brand Assets</a></li>
+                        <li><a href="">Investor Relations</a></li>
+                        <li><a href="">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+                <div class="single_footer_part">
+                    <h4>Features</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Jobs</a></li>
+                        <li><a href="">Brand Assets</a></li>
+                        <li><a href="">Investor Relations</a></li>
+                        <li><a href="">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+                <div class="single_footer_part">
+                    <h4>Resources</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Guides</a></li>
+                        <li><a href="">Research</a></li>
+                        <li><a href="">Experts</a></li>
+                        <li><a href="">Agencies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="single_footer_part">
+                    <h4>Newsletter</h4>
+                    <p>Heaven fruitful doesn't over lesser in days. Appear creeping
+                    </p>
+                    <div id="mc_embed_signup">
+                        <form target="_blank"
+                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                            method="get" class="subscribe_form relative mail_part">
+                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = ' Email Address '">
+                            <button type="submit" name="submit" id="newsletter-submit"
+                                class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                            <div class="mt-10 info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="copyright_part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="copyright_text">
+                        <P>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </P>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer_icon social_icon">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+                            <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--::footer_part end::-->

@@ -1,0 +1,408 @@
+<div class="light-style flex-grow-1 container-p-y user-profile">
+    <div class="user-profile-container">
+        <h4 class="font-weight-bold py-3 mb-4">
+            Account settings
+        </h4>
+
+        <div class="card overflow-hidden" id="changeprofile">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-toggle="list"
+                            href="#account-general">General</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-change-password">Change password</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-info">Info</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-social-links">My Chat</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" 
+                            href="#Myreviewandrating">My Reviews and Rating</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-connections">Manage Address</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-general">
+                            {{#each user}}
+                            <form id="userProfile" method="post" action="/updataUserProfile"
+                                enctype="multipart/form-data">
+                                <div class="card-body media align-items-center">
+                                    {{#if this.images}}
+                                    <img id="preview" src="/Images/profileimages/{{this.images}}" alt="profile"
+                                        class="d-block ui-w-80">
+                                    {{else}}
+                                    <img id="preview" src="/Images/IMG/download.png" alt="profile"
+                                        class="d-block ui-w-80">
+                                    {{/if}}
+                                    <div class="d-flex">
+                                        <div id="user_img" style="display: none;" class="media-body ml-4">
+                                            <label class="btn btn-outline-primary">
+                                                Upload new photo
+                                                <input type="file" class="account-settings-fileinput"
+                                                    onchange="readURL(this);" value="{{this.images}}"
+                                                    name="profileimages">
+                                            </label> &nbsp;
+                                            <div id="user_des" style="display: none;" class="text-light small mt-1">
+                                                Allowed
+                                                JPG, GIF or PNG. Max size of 800K
+                                            </div>
+                                        </div>
+                                    </div class="m-5">
+                                    <button style="margin-left: 28px;margin-top: -20px;" onclick="editProfile()"
+                                        type="button" class="btn btn-default md-btn-flat">Edit Profile</button>
+                                </div>
+                                <hr class="border-light m-0">
+
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">Username</label>
+                                        <input id="uname" type="text" class="form-control mb-1" value="{{this.email}}"
+                                            disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Name</label>
+                                        <input id="fname" name="fname" type="text" class="form-control"
+                                            value="{{this.full_name}}" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">E-mail</label>
+                                        <input id="emailid" name="email" type="text" class="form-control mb-1"
+                                            value="{{this.email}}" disabled>
+                                        <div class="alert alert-warning mt-3">
+                                            Your email is not confirmed. Please check your inbox.<br>
+                                            <a href="javascript:void(0)">Resend confirmation</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number</label>
+                                        <input id="phone_user" type="text" class="form-control" name="phone_number"
+                                            value="{{this.phone_number}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="text-right m-4" style="display:none" id="sub-btn"> <button type="submit"
+                                        class="btn btn-primary">Save
+                                        changes</button></div>
+                            </form>
+                            {{/each}}
+                        </div>
+                        <div class="tab-pane fade" id="account-change-password">
+                            <div class="card-body pb-2" id="chpass">
+                                <form id="changePasswordUser">
+                                    <div class="form-group">
+                                        <label class="form-label">Current password</label>
+                                        <input type="password" class="form-control" name="current_password" required
+                                            minlength="8">
+                                    </div>
+                                    <div class="text-center">
+                                        <p id="passwordchange-err" class="text-danger"></p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">New password</label>
+                                        <input type="password" class="form-control" name="password" id="pass" required
+                                            minlength="8">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Repeat new password</label>
+                                        <input type="password" class="form-control" name="password1">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-info">
+                            <div class="changeinfo">
+                                {{#each infos}}
+                                <form id="infoForm">
+                                    <button style="margin-left: 28px;margin-top: -20px;" onclick="editInfo()"
+                                        type="button" class="btn btn-default md-btn-flat mt-3">Edit Info</button>
+                                    <div class="card-body pb-2">
+
+                                        <div class="form-group">
+                                            <label class="form-label">Bio</label>
+                                            <textarea class="form-control" id="bio" name="bioinf" rows="5"
+                                                disabled>{{this.info.bio}}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Birthday</label>
+                                            <input type="text" class="form-control" value="{{this.info.dob}}" disabled
+                                                id="dob" name="dobs">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Country</label>
+                                            <input type="text" class="form-control" value="{{this.info.country}}"
+                                                disabled id="country" name="countrys">
+                                        </div>
+
+
+                                    </div>
+                                    <input type="text" name="id" value="{{this.info._id}}" hidden>
+                                    <hr class="border-light m-0">
+                                    <div class="card-body pb-2">
+
+                                        <h6 class="mb-4">Contacts</h6>
+                                        <div class="form-group">
+                                            <label class="form-label">Phone</label>
+                                            <input type="text" class="form-control" value="{{this.phone_number}}"
+                                                disabled>
+                                        </div>
+                                    </div>
+                                    <div class="text-right m-4" style="display:none" id="info-btn"> <button
+                                            type="submit" class="btn btn-primary">Save
+                                            changes</button></div>
+                                </form>
+                                {{/each}}
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="account-social-links">
+                            <div class="card-body pb-2">
+
+                                <div class="my-chat">
+                                    <div class="container">
+                                        <div class="row clearfix">
+                                            <div class="col-lg-12">
+                                                <div class="card chat-app">
+                                                    <div id="plist" class="people-list">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i
+                                                                        class="fa fa-search"></i></span>
+                                                            </div>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Search...">
+                                                        </div>
+                                                        <ul class="list-unstyled chat-list mt-2 mb-0">
+                                                            <li class="clearfix">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                                    alt="avatar">
+                                                                <div class="about">
+                                                                    <div class="name">Vincent Porter</div>
+                                                                    <div class="status"> <i
+                                                                            class="fa fa-circle offline"></i> left 7
+                                                                        mins
+                                                                        ago </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="clearfix active">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                                    alt="avatar">
+                                                                <div class="about">
+                                                                    <div class="name">Aiden Chavez</div>
+                                                                    <div class="status"> <i
+                                                                            class="fa fa-circle online"></i>
+                                                                        online </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="clearfix">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                                    alt="avatar">
+                                                                <div class="about">
+                                                                    <div class="name">Mike Thomas</div>
+                                                                    <div class="status"> <i
+                                                                            class="fa fa-circle online"></i>
+                                                                        online </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="clearfix">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                                    alt="avatar">
+                                                                <div class="about">
+                                                                    <div class="name">Christian Kelly</div>
+                                                                    <div class="status"> <i
+                                                                            class="fa fa-circle offline"></i> left 10
+                                                                        hours
+                                                                        ago </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="clearfix">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar8.png"
+                                                                    alt="avatar">
+                                                                <div class="about">
+                                                                    <div class="name">Monica Ward</div>
+                                                                    <div class="status"> <i
+                                                                            class="fa fa-circle online"></i>
+                                                                        online </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="clearfix">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                                    alt="avatar">
+                                                                <div class="about">
+                                                                    <div class="name">Dean Henry</div>
+                                                                    <div class="status"> <i
+                                                                            class="fa fa-circle offline"></i> offline
+                                                                        since
+                                                                        Oct 28 </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="chat">
+                                                        <div class="chat-header clearfix">
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                                        data-target="#view_info">
+                                                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                                            alt="avatar">
+                                                                    </a>
+                                                                    <div class="chat-about">
+                                                                        <h6 class="m-b-0">Aiden Chavez</h6>
+                                                                        <small>Last seen: 2 hours ago</small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 hidden-sm text-right">
+                                                                    <a href="javascript:void(0);"
+                                                                        class="btn btn-outline-secondary"><i
+                                                                            class="fa fa-camera"></i></a>
+                                                                    <a href="javascript:void(0);"
+                                                                        class="btn btn-outline-primary"><i
+                                                                            class="fa fa-image"></i></a>
+                                                                    <a href="javascript:void(0);"
+                                                                        class="btn btn-outline-info"><i
+                                                                            class="fa fa-cogs"></i></a>
+                                                                    <a href="javascript:void(0);"
+                                                                        class="btn btn-outline-warning"><i
+                                                                            class="fa fa-question"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="chat-history">
+                                                            <ul class="m-b-0">
+                                                                <li class="clearfix">
+                                                                    <div class="message-data text-right">
+                                                                        <span class="message-data-time">10:10 AM,
+                                                                            Today</span>
+                                                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                                            alt="avatar">
+                                                                    </div>
+                                                                    <div class="message other-message float-right"> Hi
+                                                                        Aiden, how are you? How is the project coming
+                                                                        along?
+                                                                    </div>
+                                                                </li>
+                                                                <li class="clearfix">
+                                                                    <div class="message-data">
+                                                                        <span class="message-data-time">10:12 AM,
+                                                                            Today</span>
+                                                                    </div>
+                                                                    <div class="message my-message">Are we meeting
+                                                                        today?
+                                                                    </div>
+                                                                </li>
+                                                                <li class="clearfix">
+                                                                    <div class="message-data">
+                                                                        <span class="message-data-time">10:15 AM,
+                                                                            Today</span>
+                                                                    </div>
+                                                                    <div class="message my-message">Project has been
+                                                                        already
+                                                                        finished and I have results to show you.</div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="chat-message clearfix">
+                                                            <div class="input-group mb-0">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i
+                                                                            class="fa fa-send"></i></span>
+                                                                </div>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Enter text here...">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="#Myreviewandrating">
+
+                           
+
+                        </div>
+                        <div class="tab-pane fade" id="account-connections">
+
+                            <div id="accordion" class="changeprofile">
+                                {{#each add}}
+                                <div class="card">
+                                    <div class="card-header d-flex" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <i class="fa fa-plus" aclass="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo{{this.deliveryDetails._id}}"
+                                                aria-expanded="false" aria-controls="collapseTwo"></i>
+                                            {{this.deliveryDetails.first_name}}
+                                        </h5>
+                                        <h5 class="ml-auto"><i onclick="deleteAddress('{{this.deliveryDetails._id}}')"
+                                                class="fa fa-trash"></i></h5>
+                                    </div>
+                                    <div id="collapseTwo{{this.deliveryDetails._id}}" class="collapse"
+                                        aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <h5 class="text-primary">Full Name:
+                                                {{this.deliveryDetails.first_name}}.{{this.deliveryDetails.last_name}}<br>
+                                                Phone Number {{this.deliveryDetails.phone_number}}<br>
+                                                Email: {{this.deliveryDetails.email}}<br>
+                                                Address:
+                                                {{this.deliveryDetails.address1}}{{this.deliveryDetails.address2}}<br>
+                                                City: {{this.deliveryDetails.city}}
+                                                District:{{this.deliveryDetails.district}}<br>
+                                                Message: {{this.deliveryDetails.message}}
+                                            </h5>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- <div class="text-right mt-3">
+            <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
+            <button type="button" class="btn btn-default">Cancel</button>
+        </div> --}}
+    </div>
+</div>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#preview')
+                    .attr('src', e.target.result)
+
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    function editProfile() {
+        document.getElementById('fname').disabled = false,
+            document.getElementById('emailid').disabled = false,
+            document.getElementById('sub-btn').style.display = 'block',
+            document.getElementById('user_des').style.display = 'block'
+        document.getElementById('user_img').style.display = 'block'
+    }
+
+</script>

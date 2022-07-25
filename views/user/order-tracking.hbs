@@ -1,0 +1,332 @@
+{{!--
+invoice Bill --}}
+
+
+<div id="content" bgcolor="#f6f6f6" style="color: #333; height: 100%; width: 100%;" height="100%" width="100%"
+    hidden>
+    {{#each data}}
+    <table bgcolor="#f6f6f6" cellspacing="0" style="border-collapse: collapse; padding: 40px; width: 100%;"
+        width="100%">
+        <tbody>
+            <tr>
+                <td width="5px" style="padding: 0;"></td>
+                <td style="clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 10px 0;">
+                    <table width="100%" cellspacing="0" style="border-collapse: collapse;">
+                        <tbody>
+                            <tr>
+                                <td style="color: #999; font-size: 12px; padding: 0; text-align: right;" align="right">
+                                    eStore<br />
+                                    Invoice #{{this._id}}<br />
+                                    August 04, 2018
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="5px" style="padding: 0;"></td>
+            </tr>
+
+            <tr>
+                <td width="5px" style="padding: 0;"></td>
+                <td bgcolor="#FFFFFF"
+                    style="border: 1px solid #000; clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 0;">
+                    <table width="100%"
+                        style="background: #f9f9f9; border-bottom: 1px solid #eee; border-collapse: collapse; color: #999;">
+                        <tbody>
+                            <tr>
+                                <td width="50%" style="padding: 20px;"><strong style="color: #333; font-size: 24px;">RS
+                                        : {{this.product.price}}</strong> Paid</td>
+                                <td align="right" width="50%" style="padding: 20px;">Thanks for Purchsing <span
+                                        class="il">eStore</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="padding: 0;"></td>
+                <td width="5px" style="padding: 0;"></td>
+            </tr>
+            <tr>
+                <td width="5px" style="padding: 0;"></td>
+                <td
+                    style="border: 1px solid #000; border-top: 0; clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 0;">
+                    <table cellspacing="0"
+                        style="border-collapse: collapse; border-left: 1px solid #000; margin: 0 auto; max-width: 600px;">
+                        <tbody>
+                            <tr>
+                                <td valign="top" style="padding: 20px;">
+                                    <h3 style="
+                                            border-bottom: 1px solid #000;
+                                            color: #000;
+                                            font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                            line-height: 1.2;
+                                            margin: 0;
+                                            margin-bottom: 15px;
+                                            padding-bottom: 5px;
+                                        ">
+                                        Summary
+                                    </h3>
+                                    <table cellspacing="0" style="border-collapse: collapse; margin-bottom: 40px;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding: 5px 0;">{{this.product.product_name}}</td>
+                                                <td align="right" style="padding: 5px 0;">{{this.product.price}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px 0;">Discount</td>
+                                                <td align="right" style="padding: 5px 0;">0.0000</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px 0;">Delivery Charges</td>
+                                                <td align="right" style="padding: 5px 0;">O.OOO</td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">
+                                                    Amount paid</td>
+                                                <td align="right"
+                                                    style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">
+                                                    Rs:{{this.product.price}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="5px" style="padding: 0;"></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    {{/each}}
+</div>
+
+
+
+
+<div class="order-tracking" style="background-color: #e9ecef;">
+    <div class="container padding-bottom-3x">
+        {{#each data}}
+        <div class="row">
+            <div class="order-same mb-3 col-md-12">
+
+                <div class="p-4 text-center text-white text-lg bg-white rounded-top"><span
+                        class="text-uppercase text-dark">Tracking
+                        Order
+                        No - </span><span class="text-medium text-dark">{{this._id}}</span></div>
+                <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Delivery Address</div>
+                    <div class="w-100 text-center py-1 px-2"><span class="text-medium">Invoice Actions</div>
+                </div>
+                <div class="card-body body-order-tracking">
+                    <div
+                        class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                        <div class="col-md-4" style="border-right:1px solid rgb(124, 116, 116) ;">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top"
+                                    src="/Images/productImages/{{this.product.Images.[0].productImg.[0]}}"
+                                    alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{this.product.product_name}}</h5>
+                                    {{!-- <p class="card-text">Some quick example text to build on the card title and
+                                        make up
+                                        the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary"></a> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center" style="border-right:1px solid rgb(124, 116, 116) ;">
+                            <h5>Shipped To</h5>
+                            <p class="text-primary">
+                                <span>{{this.users.deliveryDetails.first_name}}.{{this.users.deliveryDetails.last_name}}</span><br>
+                                <span>{{this.users.deliveryDetails.phone_number}}</span><br>
+                                <span>{{this.users.deliveryDetails.email}}</span><br>
+                                <span>{{this.users.deliveryDetails.address1}}</span><br>
+                                <span>{{this.users.deliveryDetails.address2}}</span><br>
+                                <span>{{this.users.deliveryDetails.city}}</span><span>{{this.users.deliveryDetails.district}}</span><br>
+                                <span>{{this.users.deliveryDetails.pincode}}</span><br>
+                                {{this.users.deliveryDetails.message}}
+                            </p>
+                        </div>
+                        <div class="col-md-4" style="display: flex;align-items:center;justify-content:center;">
+                            <div class="text-center align-middle">
+                                <p>download your Invoice</p>
+                                <button id="cmd" class="btn btn-primary">download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="card-order-tracking mb-3 col-md-9 body-order-tracking">
+                <div class="">
+                    <div class="card">
+
+                        <div class="row d-flex justify-content-between top">
+                            <div class="d-flex">
+                                <h5>ORDER <span class="text-primary font-weight-bold">#{{this._id}}</span></h5>
+                            </div>
+                            <div class="d-flex flex-column text-sm-right">
+                                {{!-- <p class="mb-0">Expected Arrival <span>01/12/19</span></p> --}}
+                                <p>USPS <span class="font-weight-bold">{{this._id}}</span></p>
+                            </div>
+                        </div>
+                        <!-- Add class 'active' to progress -->
+                        {{#unless products.cancel}}
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-12">
+                                <ul id="progressbar" class="text-center">
+                                    {{#if products.placed}}
+                                    <li class="active step0"></li>
+                                    <li class="active step0"></li>
+                                    <li class="step0"></li>
+                                    <li class="step0"></li>
+                                    {{else if products.ship}}
+                                    <li class="active step0"></li>
+                                    <li class="active step0"></li>
+                                    <li class="active step0"></li>
+                                    <li class="step0"></li>
+                                    {{else if products.completed}}
+                                    <li class="active step0"></li>
+                                    <li class="active step0"></li>
+                                    <li class="active step0"></li>
+                                    <li class="active step0"></li>
+                                    {{/if}}
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between top">
+                            <div class="row d-flex icon-content">
+                                <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold">Order<br><span class="text-primary">Processed</span></p>
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content">
+                                <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold">Order<br><span class="text-success">Shipped</span></p>
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content">
+                                <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold">Order<br><span class="text-success">En Route</span></p>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content">
+                                <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold">Order<br><span class="text-success">Completed</span></p>
+                                </div>
+                            </div>
+
+                        </div>
+                        {{/unless}}
+                        {{#if products.cancel}}
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-12">
+                                <ul id="progressbar" class="text-center">
+                                    <li class="active step0"></li>
+                                    <li class="active"></li>
+                                    <li class="active"></li>
+                                    <li class="active step0"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between top">
+                            <div class="row d-flex icon-content">
+                                <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold">Order<br><span class="text-primary">Processed</span></p>
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content">
+
+                                <div class="d-flex flex-column">
+
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content">
+
+                                <div class="d-flex flex-column">
+
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content">
+                                <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold">Order<br><span class="text-danger">Cancelled</span></p>
+                                </div>
+                            </div>
+
+                        </div>
+                        {{/if}}
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-tracking-same col-md-3">
+                <div class="container mb-1">
+
+                    <div class="p-4 text-center text-white text-lg bg-dark rounded-top">
+                        <span>Reviews</span>
+                    </div>
+                    <div
+                        class="d-flex text-center flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
+                        <span>Reviews & Ratings</span>
+                    </div>
+                    <div class="card-body body-order-tracking">
+                        <div
+                            class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x rating-tracking">
+                            <div class="mt-5" style="margin-bottom: 61px;">
+                                <a href=""><i class="ti-star"></i> Review & Ratings</a><br>
+                                <a href=""><i class="ti-pin2"></i>Need help</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+
+
+    <script>
+        var doc = new jsPDF();
+        var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        };
+
+        $('#cmd').click(function () {
+            doc.fromHTML($('#content').html(), 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+            doc.save('Invoice_details.pdf');
+        });
+    </script>

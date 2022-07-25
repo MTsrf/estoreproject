@@ -1,0 +1,110 @@
+<!-- Category -->
+<div class="orders mt-5 p-5">
+    <div class="row">
+        <div class="col-xl-11 mx-auto category-top">
+            <div class="card">
+                <div class="card-body mb-2">
+
+                    <div class="input-group mb-3">
+                        <h4 class="box-title">All Sellers </h4>
+                    </div>
+                </div>
+                <div class="card-body--">
+                    <div class="table-stats order-table ov-h">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>index</th>
+                                    <th>Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each data}}
+                                <tr>
+                                    <td class="create_index">{{ inc @index}} </td>
+                                    <td> <span class="products">{{this.full_name}}</span> </td>
+                                    <td> <span class="products">{{this.phone_number}}</span> </td>
+                                    <td> <span class="products">{{this.email}}</span> </td>
+                                    <td>
+                                        <div id="refresh">
+                                            {{#if isBlocked}}
+                                           <button type="button" onclick="unBlock('{{this._id}}')" class="btn btn-success">Unblock</button>
+                                            {{else}}
+                                            {{!-- <button type="button" onclick="unBlock('{{this._id}}')"
+                                                class="btn btn-danger">Unblock</button> --}}
+
+                                            <button type="button" onclick="block('{{this._id}}')"
+                                                class="btn btn-danger">Block</button>
+                                            {{/if}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div> <!-- /.card -->
+        </div> <!-- /.col-lg-8 -->
+    </div>
+</div>
+<!-- /.Category -->
+</a>
+
+<script type="text/javascript">
+    function block(blockId) {
+        swal({
+            title: "Are you sure?",
+            text: "Do you want to block this person?!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '/admin/block-seller/' + blockId,
+                        method: 'get',
+                        success: (response) => {
+                            location.reload()
+                        }
+                    })
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+    }
+    function unBlock(unBlockId){
+        swal({
+            title: "Are you sure?",
+            text: "Do you want to ubblock this person?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '/admin/unblock-seller/' + unBlockId,
+                        method: 'get',
+                        success: (response) => {
+                            location.reload()
+                        }
+                    })
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+    }
+    $(document).ready(function () {
+        $('#bootstrap-data-table-export').DataTable();
+    });
+</script>
+{{!--
+<script>
+    $(".create_index").text(parseInt($(".create_index").text()) + 1)
+</script> --}}

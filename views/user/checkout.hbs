@@ -1,0 +1,444 @@
+<!--================Home Banner Area =================-->
+<!-- breadcrumb start-->
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                        <h2>Product Checkout</h2>
+                        <p>Home <span>-</span> Shop Single</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb start-->
+
+<!--================Checkout Area =================-->
+<section class="checkout_area padding_top">
+    <div class="container">
+        <div class="billing_details">
+            <div id="here" class="row">
+                <div class="col-lg-8">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0 text-primary">
+                                    <i class="fa fa-plus" aria-hidden="true" class="btn btn-link" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"></i>
+                                    Add new Address
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <h3>Billing Details</h3>
+                                    <form id="newAddress" class="row contact_form" novalidate="novalidate">
+                                        <div class="col-md-6 form-group p_star">
+                                            <input type="text" class="form-control" id="first" name="first_name"
+                                                required />
+                                            <span class="placeholder" data-placeholder="First name"></span>
+                                        </div>
+                                        <div class="col-md-6 form-group p_star">
+                                            <input type="text" class="form-control" id="last" name="last_name"
+                                                required />
+                                            <span class="placeholder" data-placeholder="Last name"></span>
+                                        </div>
+                                        <div class="col-md-6 form-group p_star">
+                                            <input type="number" class="form-control" id="number" name="phone_number"
+                                                required />
+                                            <span class="placeholder" data-placeholder="Phone number"></span>
+                                        </div>
+                                        <div class="col-md-6 form-group p_star">
+                                            <input type="text" class="form-control" id="email" name="email" required />
+                                            <span class="placeholder" data-placeholder="Email Address"></span>
+                                        </div>
+                                        <div class="col-md-12 form-group p_star">
+                                            <input type="text" class="form-control" id="add1" name="address1"
+                                                required />
+                                            <span class="placeholder" data-placeholder="Address line 01"></span>
+                                        </div>
+                                        <div class="col-md-12 form-group p_star">
+                                            <input type="text" class="form-control" id="add2" name="address2"
+                                                required />
+                                            <span class="placeholder" data-placeholder="Address line 02"></span>
+                                        </div>
+                                        <div class="col-md-6 form-group p_star">
+                                            <input type="text" class="form-control" id="city" name="city" required />
+                                            <span class="placeholder" data-placeholder="Town/City"></span>
+                                        </div>
+                                        <div class="col-md-6 form-group p_star">
+                                            <input type="text" class="form-control" id="district" name="district"
+                                                required />
+                                            <span class="placeholder" data-placeholder="District"></span>
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <input type="number" class="form-control" id="zip" name="zip"
+                                                placeholder="Postcode/ZIP" required />
+                                        </div>
+                                        {{!-- <input type="text" name="userId" id="" value="{{../user}}" hidden> --}}
+                                        {{!-- <div class="col-md-12 form-group">
+                                            <div class="creat_account">
+                                                <input type="checkbox" id="f-option2" name="selector" />
+                                                <label for="f-option2">Create an account?</label>
+                                            </div>
+                                        </div> --}}
+                                        <div class="col-md-12 form-group">
+                                            <div class="creat_account">
+                                                <h3>Shipping Details</h3>
+                                                <input type="checkbox" id="f-option3" name="selector" />
+                                                <label for="f-option3">Ship to a different address?</label>
+                                            </div>
+                                            <textarea class="form-control" name="message" id="message" rows="1"
+                                                placeholder="Order Notes"></textarea>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn_3"
+                                                style="margin: auto;display:block;">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="changeprofile">
+                            {{#each add}}
+                            <div class="card">
+                                <div class="card-header d-flex" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        {{!-- <button class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                            Collapsible Group Item #2
+                                        </button> --}}
+                                        <input type="radio" form="payForm" value="{{this.deliveryDetails._id}}"
+                                            name="address" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseTwo{{this.deliveryDetails._id}}" aria-expanded="false"
+                                            aria-controls="collapseTwo" required>
+                                        {{this.deliveryDetails.first_name}}
+                                    </h5>
+                                    <h5 class="ml-auto"><i onclick="deleteAddress('{{this.deliveryDetails._id}}')"
+                                            class="fa fa-trash"></i></h5>
+                                </div>
+                                <div id="collapseTwo{{this.deliveryDetails._id}}" class="collapse"
+                                    aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <h5 class="text-primary">Full Name:
+                                            {{this.deliveryDetails.first_name}}.{{this.deliveryDetails.last_name}}<br>
+                                            Phone Number {{this.deliveryDetails.phone_number}}<br>
+                                            Email: {{this.deliveryDetails.email}}<br>
+                                            Address:
+                                            {{this.deliveryDetails.address1}}{{this.deliveryDetails.address2}}<br>
+                                            City: {{this.deliveryDetails.city}}
+                                            District:{{this.deliveryDetails.district}}<br>
+                                            Message: {{this.deliveryDetails.message}}
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="order_box">
+
+                        <h2>Your Order</h2>
+
+                        <ul class="list">
+                            <li>
+                                <a href="#">Product
+                                    <span>Total</span>
+                                </a>
+                            </li>
+                            <li>
+                                {{#each datas}}
+                                <a href="#"><span class="pname">{{this.product.product_name}}</span>
+                                    <span class="middle">x {{this.quantity}}</span>
+                                    <span class="last">${{this.price}}.00</span>
+
+                                </a>
+                                {{/each}}
+                            </li>
+                        </ul>
+
+                        <ul class="list list_2">
+                            {{!-- <li>
+                                <a href="#">Subtotal
+                                    <span>$2160.00</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">Shipping
+                                    <span>Flat rate: $50.00</span>
+                                </a>
+                            </li> --}}
+                            <li>
+                                <a href="#">Total
+                                    <span>${{total.[0].total}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <form id="payForm">
+
+
+                            <div class="payment_item">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option5" name="payment-method" value="COD">
+                                    <label for="f-option5">Cash on Delivery</label>
+                                    <div class="check"></div>
+                                </div>
+                                <p>
+                                    Cash on Delivery Available
+                                </p>
+                            </div>
+                            <div class="payment_item active">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option6" name="payment-method" value="online">
+                                    <label for="f-option6">Online </label>
+                                    <img src="img/product/single-product/card.jpg" alt="" />
+                                    <div class="check"></div>
+                                </div>
+                                <p>
+                                    Give Your Correct Payment details
+                                </p>
+                            </div>
+
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option4" name="selector" />
+                                <label for="f-option4">I’ve read and accept the </label>
+                                <a href="#">terms & conditions*</a>
+                            </div>
+                            <div id="rdio-btn" class="alert alert-danger" role="alert" style="display: none;">
+                                Choose Your payment Option
+                            </div>
+                            {{!-- <button class="btn_3">Proceed to Pay</button> --}}
+                            <button value="submit" type="submit" class="btn_3" style="margin: auto;">Proceed to
+                                Paypal</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Checkout Area =================-->
+
+<!--::footer_part start::-->
+<footer class="footer_part">
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-sm-6 col-lg-2">
+                <div class="single_footer_part">
+                    <h4>Top Products</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Managed Website</a></li>
+                        <li><a href="">Manage Reputation</a></li>
+                        <li><a href="">Power Tools</a></li>
+                        <li><a href="">Marketing Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+                <div class="single_footer_part">
+                    <h4>Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Jobs</a></li>
+                        <li><a href="">Brand Assets</a></li>
+                        <li><a href="">Investor Relations</a></li>
+                        <li><a href="">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+                <div class="single_footer_part">
+                    <h4>Features</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Jobs</a></li>
+                        <li><a href="">Brand Assets</a></li>
+                        <li><a href="">Investor Relations</a></li>
+                        <li><a href="">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+                <div class="single_footer_part">
+                    <h4>Resources</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="">Guides</a></li>
+                        <li><a href="">Research</a></li>
+                        <li><a href="">Experts</a></li>
+                        <li><a href="">Agencies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="single_footer_part">
+                    <h4>Newsletter</h4>
+                    <p>Heaven fruitful doesn't over lesser in days. Appear creeping
+                    </p>
+                    <div id="mc_embed_signup">
+                        <form target="_blank"
+                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                            method="get" class="subscribe_form relative mail_part">
+                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = ' Email Address '">
+                            <button type="submit" name="submit" id="newsletter-submit"
+                                class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                            <div class="mt-10 info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="copyright_part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="copyright_text">
+                        <P>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </P>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer_icon social_icon">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+                            <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--::footer_part end::-->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+        $("#newAddress").validate({
+            submitHandler: function (form) {
+                $.ajax({
+                    url: '/save-address',
+                    method: 'post',
+                    data: $(form).serialize(),
+                    success: (response) => {
+                        console.log(response)
+                        if (response.status) {
+                            $("#here").load(window.location.href + " #here");
+                        }
+                    }
+
+                })
+            }
+        })
+
+
+        //Payment Submission
+
+        $("#payForm").validate({
+            submitHandler: function (form) {
+                var zml0 = $('input[name=payment-method]:checked').val();
+                var address = $('input[name=address]:checked').val();
+                if (zml0) {
+                    if (address) {
+                        $.ajax({
+                            url: '/checkout-product',
+                            method: 'post',
+                            data: $(form).serialize(),
+                            success: (response) => {
+                                if (response.codSuccess) {
+                                    location.href = '/success'
+                                } else {
+                                    console.log("ibfsdfjkld" + response);
+                                    razorpayPayment(response)
+                                }
+                            }
+
+                        })
+                    }else{
+                        $("#rdio-btn").css("display", "block")
+                        $("#rdio-btn").text("Choose your correct address")
+                    }
+
+                } else {
+                    $("#rdio-btn").css("display", "block")
+                        $("#rdio-btn").text("Choose your Payment Options")
+                }
+
+            }
+        })
+
+    })
+
+
+
+
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_CXL1fP2ACnnSAC", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "eStore Shop",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                verifyPayment(response, order)
+
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    function verifyPayment(payment, order) {
+        console.log("payments");
+        console.log(payment);
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment: payment,
+                order: order,
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    location.href = '/success'
+                } else {
+                    alert('Payment error')
+                }
+            }
+        })
+    }
+
+</script>

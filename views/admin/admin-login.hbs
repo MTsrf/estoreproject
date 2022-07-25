@@ -1,0 +1,61 @@
+<style>
+    .login-section{
+        background-color: #2874f0;
+        height: 100vh;
+    }
+    .login-bt{
+        background-color: #2874f0;
+        color: white;
+    }
+    .login-logo h1 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 70px;
+}
+</style>
+
+<section class="login-section">
+
+
+    <div class="sufee-login d-flex align-content-center flex-wrap ">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="/admin">
+                        <h1>eStore</h1>
+                    </a>
+                </div>
+                <div class="login-form">
+                    <form id="signupForm" method="post" action="/admin/admin-login">
+
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input id="email" name="email" type="email" class="form-control" placeholder="Email"
+                                required>
+                        </div>
+                        {{#if pasErr}}
+                        <p class="text-danger text-center">Username is invalid Please Check</p>
+                        {{/if}}
+                        <div class="form-group mb-5">
+                            <label>Password</label>
+                            <input id="password" name="password" type="password" class="form-control"
+                                placeholder="Password" required minlength="6">
+                        </div>
+                        {{#if messages}}
+                        <p class="text-danger text-center">Password is invalid Please Check</p>
+                        {{/if}}
+
+
+                        <button type="submit" class="btn btn-flat m-b-30 m-t-30 login-bt">Sign in</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<script>
+    $("#signupForm").validate()
+</script>
