@@ -596,8 +596,6 @@ module.exports = {
     }, getCartProductList: (userId) => {
         return new Promise(async (resolve, reject) => {
             let cart = await Cart.findOne({ user: userId })
-            console.log('==============================');
-            console.log(cart.products.quantity);
             resolve(cart.products)
         })
     }, generateRazorpay: (orderId, amount) => {
