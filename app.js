@@ -12,10 +12,10 @@ const userRouter = require('./routes/user');
 const adminRouter = require('./routes/admin');
 const sellerRouter = require('./routes/seller')
 const dotenv = require('dotenv')
+
 dotenv.config()
 
 const app = express();
-
 
 
 
@@ -70,7 +70,13 @@ app.use('/seller', sellerRouter);
 //error page
 app.get('*', (req, res) => {
   res.render('error',{layout:'error_layout'})
+
 });
+
+
+
+ //socket io
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

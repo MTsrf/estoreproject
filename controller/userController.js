@@ -512,8 +512,9 @@ module.exports.saveAddress = (async(req,res)=>{
 //order-tracking in user
 module.exports.orderTracking = (async(req,res)=>{
     try {
-        console.log(req.body);
-        const {order,cart,user,product,address}= req.body
+        
+        const {order,cart,user,product,address} = req.query
+        // const {order,cart,user,product,address}= req.body
         let trackingProduct = await Order.aggregate([{$unwind:'$products'},{$match:{_id:mongoose.Types.ObjectId(order)}},{
             $match:{'products._id':mongoose.Types.ObjectId(cart)}},{$match:{'products.item':mongoose.Types.ObjectId(product)}},{
             $lookup:{
@@ -532,23 +533,12 @@ module.exports.orderTracking = (async(req,res)=>{
         },{$unwind:'$users'},{$unwind:'$users.deliveryDetails'},{
             $match:{'users.deliveryDetails._id':mongoose.Types.ObjectId(address)}
         }])
-        trackingDetails =trackingProduct
-        res.json({success:true})
+        res.render('user/order-tracking',{layout:'user_layout',data:trackingProduct})
     } catch (error) {
         
     }
 })
 
-
-//tracking details
-module.exports.trackingDetails = (async(req,res)=>{
-    try {
-        console.log(trackingDetails);
-        res.render('user/order-tracking',{layout:'user_layout',data:trackingDetails})
-    } catch (error) {
-        
-    }
-})
 
 //delete Deliveery Address
 module.exports.deleteAddress = (async(req,res)=>{
@@ -665,7 +655,40 @@ module.exports.success = ((req, res) => {
 })
 
 
+// User Chat
+module.exports.myChat=(async(req,res)=>{
+    try {
+        const {order,cart,user,product,address} = req.query
+        let Chatdetails = await Order.aggregate([{$unwind:'$products'},{$match:{_id:mongoose.Types.ObjectId(order)}},{
+            $match:{'products._id':mongoose.Types.ObjectId(cart)}},{$match:{'products.item':mongoose.Types.ObjectId(product)}},{
+            $lookup:{
+                from:'products',
+                foreignField:'_id',
+                localField:'products.item',
+                as:'product'
+            }  
+        },{$unwind:'$product'},{$match:{user:mongoose.Types.ObjectId(user)}},{
+            $lookup:{
+                from:'users',
+                localField:"user",
+                foreignField:'_id',
+                as:'users'
+            }
+        },{$unwind:'$users'},{$unwind:'$users.deliveryDetails'},{
+            $match:{'users.deliveryDetails._id':mongoose.Types.ObjectId(address)}
+        },{$lookup:{
+            from:'sellers',
+            localField:"product.seller",
+            foreignField:"_id",
+            as:'seller'
+        }},{$unwind:'$seller'}])
+        console.log(Chatdetails);
+        res.render('user/chat',{layout:'user_layout',data:Chatdetails})
 
+    } catch (error) {
+        
+    }
+})
 
 
 

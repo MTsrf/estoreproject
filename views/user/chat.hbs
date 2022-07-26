@@ -1,0 +1,125 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+    .mychatsection {
+        padding: 0;
+        margin: 100px 0 0 0;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #F8F8F8;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .mychatsection .chat__section {
+        width: 1600px;
+        max-width: 90%;
+        background: #fff;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .mychatsection .brand {
+        padding: 20px;
+        background: #f1f1f1;
+        display: flex;
+        align-items: center;
+    }
+
+    .mychatsection .brand h1 {
+        text-transform: uppercase;
+        font-size: 20px;
+        color: #444;
+        margin-left: 10px;
+    }
+
+    .mychatsection .message__area {
+        height: 500px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding-top: 40px;
+    }
+
+    .mychatsection #textarea {
+        width: 100%;
+        border: none;
+        padding: 20px;
+        font-size: 16px;
+        outline: none;
+        background: #FBFBFB;
+    }
+
+    .mychatsection .message {
+        padding: 20px;
+        border-radius: 4px;
+        margin-bottom: 40px;
+        min-width: 300px;
+        position: relative;
+    }
+
+    .mychatsection .incoming {
+        background: #8F8BE8;
+        color: #fff;
+        width: fit-content;
+    }
+
+    .mychatsection .outgoing {
+        background: #e9eafd;
+        color: #787986;
+        margin-left: auto;
+    }
+
+    .mychatsection .message h4 {
+        position: absolute;
+        top: -20px;
+        left: 0;
+        color: #333;
+        font-size: 14px;
+    }
+</style>
+
+
+<section class="mychatsection">
+    <div class="chat__section">
+        {{#each data}}
+        <div class="brand">
+            <img height="40" src="/Images/profileimages/{{this.users.images}}" alt="">
+            <h1>{{this.users.full_name}}</h1>
+            <span hidden id="user-name">{{this.users.full_name}}</span>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="products" style="padding: 20px;">
+                    <span id="productid" hidden>{{this.product.product_name}}</span>
+                    <span id="productimg" hidden>{{this.product.Images.[0].productImg.[0]}}</span>
+                    {{!-- <span id="sellername" hidden>{{this.seller.name}}</span> --}}
+
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="/Images/productImages/{{this.product.Images.[0].productImg.[0]}}"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.product.product_name}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="message__area"></div>
+                <div>
+                    <textarea id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
+                </div>
+            </div>
+        </div>
+
+
+
+        {{/each}}
+
+    </div>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/chat/chat.js"></script>

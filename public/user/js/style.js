@@ -232,24 +232,24 @@
 
 
     //order Tracking post method
-    function orderTrackig(orderId, cartId, userId, productId, addressId) {
-        $.ajax({
-            url: '/order-tracking',
-            method: 'post',
-            data: {
-                order: orderId,
-                cart: cartId,
-                user: userId,
-                product: productId,
-                address: addressId
-            },
-            success: (response) => {
-                if (response.success) {
-                    location.href = '/tracking-details'
-                }
-            }
-        })
-    }
+    // function orderTrackig(orderId, cartId, userId, productId, addressId) {
+    //     $.ajax({
+    //         url: '/order-tracking',
+    //         method: 'post',
+    //         data: {
+    //             order: orderId,
+    //             cart: cartId,
+    //             user: userId,
+    //             product: productId,
+    //             address: addressId
+    //         },
+    //         success: (response) => {
+    //             if (response.success) {
+    //                 location.href = '/tracking-details'
+    //             }
+    //         }
+    //     })
+    // }
 
     //changepassword in user
     $('#changePasswordUser').validate({

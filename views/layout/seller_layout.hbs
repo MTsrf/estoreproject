@@ -139,9 +139,9 @@
 
             // Pie chart flotPie1
             var piedata = [
-                { label: "Desktop visits", data: [[1, 32]], color: '#5c6bc0' },
-                { label: "Tab visits", data: [[1, 33]], color: '#ef5350' },
-                { label: "Mobile visits", data: [[1, 35]], color: '#66bb6a' }
+                { label: "Total Revenue", data: [[1, {{totalRevenue.[0].total}}]], color: '#5c6bc0' },
+                { label: "Total Products", data: [[1, {{product}}]], color: '#ef5350' },
+                { label: "Active Order", data: [[1, {{order}}]], color: '#66bb6a' }
             ];
 
             $.plot('#flotPie1', piedata, {

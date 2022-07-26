@@ -102,11 +102,11 @@
                                             <table class="table widget-26" id="myTable">
                                                 <tbody>
                                                     {{#each data}}
-                                                    <tr
-                                                        onclick="orderTrackig('{{this._id}}','{{this.products._id}}','{{this.user}}','{{this.products.item}}','{{this.address}}')">
+                                                    {{!-- <tr
+                                                        onclick="orderTrackig('{{this._id}}','{{this.products._id}}','{{this.user}}','{{this.products.item}}','{{this.address}}')"> --}}
                                                         {{!-- <a href="/order-tracking/{{this.products._id}}"> --}}
-
-
+                                                    <tr>
+                        
                                                             <td>
                                                                 <div class="widget-26-job-emp-img">
                                                                     <img src="/Images/productImages/{{this.product.Images.[0].productImg.[0]}}"
@@ -115,7 +115,7 @@
                                                             </td>
                                                             <td>
                                                                 <div class="widget-26-job-title">
-                                                                    <a href="#">{{ this.product.product_name }}</a>
+                                                                    <a href="/order-tracking?order={{this._id}}&cart={{this.products._id}}&user={{this.user}}&product={{this.products.item}}&address={{this.address}}">{{ this.product.product_name }}</a>
                                                                     <p class="m-0"><a href="#"
                                                                             class="employer-name">Seller:
                                                                             {{this.seller.full_name}}</a></p>
@@ -123,6 +123,7 @@
                                                                     --}}
                                                                 </div>
                                                             </td>
+                                                        
                                                             <td>
                                                                 <div class="widget-26-job-info">
                                                                     <p class="type m-0">Price</p>
@@ -173,6 +174,7 @@
                                                                 </div>
                                                                 {{/if}}
                                                             </td>
+                                                        
                                                             <td>
                                                                 {{#if products.ship}}
                                                                 <div class="widget-26-job-starred">

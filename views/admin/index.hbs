@@ -83,8 +83,8 @@
                     <div class="card-body">
                         <div class="card-left pt-1 float-left">
                             <h3 class="mb-0 fw-r">
-                                <span class="currency float-left mr-1">Rs :</span>
-                                <span class="count float-left">0</span>
+                                <span class="currency float-left mr-1">Rs :{{profit}}</span>
+
                                 {{!-- <span>%</span> --}}
                             </h3>
                             <p class="text-light float-left mr-1 m-0">Total Profit</p>
@@ -105,7 +105,7 @@
                         <div class="card-left pt-1 float-left">
                             <h3 class="mb-0 fw-r">
                                 <span class="currency float-left mr-1"></span>
-                                <span class="count">10</span>
+                                <span class="count">{{sales}}</span>
                             </h3>
                             <p class="text-light mt-1 m-0">Today Sales</p>
                         </div><!-- /.card-left -->
@@ -178,63 +178,10 @@
                         </div>
                     </div><!-- /# column -->
                     <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title box-title">Live Chat</h4>
-                                <div class="card-content">
-                                    <div class="messenger-box">
-                                        <ul>
-                                            <li>
-                                                <div class="msg-received msg-container">
-                                                    <div class="avatar">
-                                                        <img src="images/avatar/64-1.jpg" alt="">
-                                                        <div class="send-time">11.11 am</div>
-                                                    </div>
-                                                    <div class="msg-box">
-                                                        <div class="inner-box">
-                                                            <div class="name">
-                                                                John Doe
-                                                            </div>
-                                                            <div class="meg">
-                                                                Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                                elit.
-                                                                Perspiciatis sunt placeat velit ad reiciendis ipsam
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.msg-received -->
-                                            </li>
-                                            <li>
-                                                <div class="msg-sent msg-container">
-                                                    <div class="avatar">
-                                                        <img src="images/avatar/64-2.jpg" alt="">
-                                                        <div class="send-time">11.11 am</div>
-                                                    </div>
-                                                    <div class="msg-box">
-                                                        <div class="inner-box">
-                                                            <div class="name">
-                                                                John Doe
-                                                            </div>
-                                                            <div class="meg">
-                                                                Hay how are you doing?
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- /.msg-sent -->
-                                            </li>
-                                        </ul>
-                                        <div class="send-mgs">
-                                            <div class="yourmsg">
-                                                <input class="form-control" type="text">
-                                            </div>
-                                            <button class="btn msg-send-btn">
-                                                <i class="pe-7s-paper-plane"></i>
-                                            </button>
-                                        </div>
-                                    </div><!-- /.messenger-box -->
-                                </div>
-                            </div> <!-- /.card-body -->
-                        </div><!-- /.card -->
+                        <div class="card-body">
+                            <!-- <canvas id="TrafficChart"></canvas>   -->
+                            <canvas id="productChart"></canvas>
+                        </div>
                     </div>
                 </div><!-- .animated -->
             </div>

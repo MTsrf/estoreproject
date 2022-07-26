@@ -26,6 +26,7 @@
     "passport": "^0.6.0",
     "razorpay": "^2.8.2",
     "req-flash": "^0.0.3",
+    "socket.io": "^4.5.1",
     "soft-delete-plugin-mongoose": "^1.0.15",
     "tolowercase": "^1.0.0",
     "twilio": "^3.77.3"

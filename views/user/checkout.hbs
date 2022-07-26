@@ -343,7 +343,7 @@
                     success: (response) => {
                         console.log(response)
                         if (response.status) {
-                            $("#here").load(window.location.href + " #here");
+                            location.reload()
                         }
                     }
 

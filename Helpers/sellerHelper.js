@@ -306,6 +306,15 @@ module.exports = {
         } catch (error) {
             
         }
+    },getSeller:async(seller)=>{
+        try {
+            let data = await Seller.aggregate([{$match:{_id:seller}}])
+            console.log(data);
+            return data
+            
+        } catch (error) {
+            
+        }
     }
     // singleViewOrders:(id,product,address,sellerId)=>{
     //     return new Promise(async(resolve,reject)=>{

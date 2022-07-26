@@ -34,22 +34,13 @@
                                     Explore
                                 </p>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                    {{!-- {{#each category}}
-                                    <a class="dropdown-item"
-                                        href="/category-products/{{this._id}}">{{this.category}}</a>
-                                    {{/each}} --}}
+                                    
                                     {{#each category}}
                                     <a class="dropdown-item" style="cursor: pointer;"
                                         onclick="check('{{this._id}}')">
                                         {{this.category}}</a>
                                     {{/each}}
-                                    {{!-- <form id="filter">
-                                    <li cl>
-                                        <input class="form-check-input" type="checkbox" id="check1" name="category"
-                                            value="{{this._id}}">
-                                        <label class="form-check-label">{{this.category}}</label>
-                                    </li>
-                                    </form> --}}
+                                    
 
                                 </div>
                             </li>
@@ -93,26 +84,18 @@
                         <a href="/whislist"><i class="ti-heart"></i></a>
                         <div class="cart">
                             <a class="" href="/cart" id="navbarDropdown3" role="button">
-                                <i class="fas fa-cart-plus"><span class="badge badge-primary">4</span></i>
+                                <i class="fas fa-cart-plus"><span class="badge badge-primary"></span></i>
                             </a>
-                            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="single_product">
-    
-                                    </div>
-                                </div> -->
+                           
 
                         </div>
                         {{else}}
                         <a data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="ti-heart"></i></a>
                         <div class="cart">
                             <a type="button" data-toggle="modal" data-target=".bd-example-modal-lg" role="button">
-                                <i class="fas fa-cart-plus"><span class="badge badge-primary">4</span></i>
+                                <i class="fas fa-cart-plus"><span class="badge badge-primary"></span></i>
                             </a>
-                            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="single_product">
-    
-                                    </div>
-                                </div> -->
+                            
 
                         </div>
                         {{/if}}

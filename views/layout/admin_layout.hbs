@@ -137,8 +137,7 @@
 
             // Pie chart flotPie1
             var piedata = [
-                { label: "Total Seller", data: [[1, {{ totalSeller }}]], color: '#5c6bc0'
-        },
+           { label: "Total Seller", data: [[1, {{ totalSeller }}]], color: '#5c6bc0'},
             { label: "Total Customers", data: [[1, {{ totalCustomers }}]], color: '#ef5350'},
             { label: "Active Orders", data: [[1, {{ active }}]], color: '#66bb6a'}
             ];
@@ -223,7 +222,28 @@
                 }
             });
 
-        
+          // Traffic Chart using chartist
+            var xValues = ["Total Sales", "Active Order","Total Products", "Total seller", "Total Customer"];
+            var yValues = [{{sales}},{{active}},{{totalProduct}},{{totalSeller}},{{totalCustomers}}];
+            var barColors = ["#00c292","blue", "#ab8ce4", "red", "#fb9678"];
+
+            new Chart("productChart", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: "2022 Activity Progress Report"
+                    }
+                }
+            });
 
 
         //doughut chart
@@ -236,7 +256,7 @@
             type: 'doughnut',
             data: {
                 datasets: [{
-                    data: [{{totalRevanue.[0].total}}, 4000],
+                    data: [{{totalRevanue.[0].total}}, {{profit}}],
                     backgroundColor: [
                         "rgba(0, 194, 146,0.9)",
                         "rgba(92, 107, 192, 1)",

@@ -247,6 +247,19 @@ router.get('/singelOrderView',isVerifySeller,(req,res)=>{
   res.render('seller/singleorder',{layout: 'seller_layout', sel: true ,data:datas})
 })
 
+
+
+
+
+//seller chat
+router.get('/chat',isVerifySeller,async(req,res)=>{
+  sellerID = req.session.seller
+  id = mongoose.Types.ObjectId(sellerID._id)
+  console.log(id);
+  let sellerData = await sellerHelper.getSeller(id)
+  res.render('seller/chat',{layout:'seller_layout',sel:true,data:sellerData})
+})
+
 //logout seller
 router.get('/seller-logout', (req, res) => {
   req.session.sellerLogin = false;
