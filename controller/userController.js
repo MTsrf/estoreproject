@@ -514,7 +514,6 @@ module.exports.orderTracking = (async(req,res)=>{
     try {
         
         const {order,cart,user,product,address} = req.query
-        // const {order,cart,user,product,address}= req.body
         let trackingProduct = await Order.aggregate([{$unwind:'$products'},{$match:{_id:mongoose.Types.ObjectId(order)}},{
             $match:{'products._id':mongoose.Types.ObjectId(cart)}},{$match:{'products.item':mongoose.Types.ObjectId(product)}},{
             $lookup:{
@@ -533,6 +532,8 @@ module.exports.orderTracking = (async(req,res)=>{
         },{$unwind:'$users'},{$unwind:'$users.deliveryDetails'},{
             $match:{'users.deliveryDetails._id':mongoose.Types.ObjectId(address)}
         }])
+        console.log('tracking product=====================');
+        console.log(trackingProduct);
         res.render('user/order-tracking',{layout:'user_layout',data:trackingProduct})
     } catch (error) {
         
