@@ -53,10 +53,8 @@ router.get('/admin-panel',isVerifyAdmin,async(req,res)=>{
     adminHelprs.totalRevanue(),adminHelprs.totalSales(),
     adminHelprs.activeOrder(),adminHelprs.totalProducts(),
     adminHelprs.totalCustomer(),adminHelprs.totalSellers()])
-    let profit = total[0]
-    let sum = profit[0].total * 0.15
     res.render('admin/index',{layout:'admin_layout',admin:true,totalRevanue:total[0],sales:total[1],
-    active:total[2],totalProduct:total[3],totalCustomers:total[4],totalSeller:total[5],profit:sum});
+    active:total[2],totalProduct:total[3],totalCustomers:total[4],totalSeller:total[5]});
 })
 
 
